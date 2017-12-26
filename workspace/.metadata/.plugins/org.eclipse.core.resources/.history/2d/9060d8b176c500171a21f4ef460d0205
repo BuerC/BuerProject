@@ -1,0 +1,45 @@
+package ProLeague;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Team implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3361238734853926466L;
+	ArrayList<Player> players;
+	String name;
+	int years;
+	String coach;
+	
+	
+	public Team(String name, int years, String coach)
+	{
+		players = new ArrayList<Player>();
+		this.name=name;
+		this.years=years;
+		this.coach=coach;
+		
+	}
+	void addPlayer(Player p)
+	{
+		players.add(p);
+	}
+	
+	
+	public String getTeamName()
+	{
+		return this.name;
+	}
+	public int getTeamYears()
+	{
+		return this.years;
+	}
+	public String getTeamCoach()
+	{
+		return this.coach;
+	}
+	
+}

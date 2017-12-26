@@ -1,0 +1,40 @@
+package lab5;
+import java.io.*;
+import java.util.*;
+public class Fifo {
+	ArrayList<String> array;
+	String output;
+	Fifo()
+	{
+		array = new ArrayList();
+	}
+	
+	synchronized void put(String s) throws free
+	{
+		if(array.size()<10)
+			{
+				array.add(s);
+				throw new free();
+			}
+		else 
+			{
+				System.out.println("Queue is currently full...Please Wait for a second...");
+			}
+	}
+	synchronized String get() throws IsEmpty
+	{
+		if(array.size()==0)
+		{
+			System.out.println("Product is generating....Please Wait for a second...");
+			throw new IsEmpty();
+		}
+		else
+		{
+			output = array.get(0);
+			array.remove(0);
+			return output;
+			
+		}
+		
+	}
+}

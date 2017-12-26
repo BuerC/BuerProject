@@ -1,0 +1,651 @@
+package ProLeague;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.Window;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.awt.event.WindowEvent;
+import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+@SuppressWarnings("unused")
+public class LeagueFrame extends JFrame implements WindowListener{
+     private JTextField teamname;
+	public LeagueFrame lol;
+	  private JButton teaminfo;
+	  private JButton playerinfo;
+	  private JScrollPane scrollpane1;
+	  private JScrollPane scrollPane;
+	  private JTable table;
+	  private JTable table1;
+	  private JButton show;
+	  private Image img;
+	  private JComboBox<String> box;
+	  private JButton showP;
+	  private JButton menuteam;
+	  private JButton menuplayer;
+	  
+	  
+	private static final long serialVersionUID = -4496896648617886064L;
+		
+	
+
+	
+	
+
+	public class ActionListener1 implements ActionListener {
+		JMenuBar menubar;
+		
+		
+		
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource()==menuteam)
+			{
+				
+				
+				
+				LeagueFrame lf = new LeagueFrame();
+		       	
+	       	    lf.dispose();
+	       	    
+				lf.team(true);
+				
+			
+			}
+			else if(e.getSource()==menuplayer)
+			{
+				LeagueFrame lf = new LeagueFrame();
+		       	   
+				lf.dispose();
+	       	    
+	       	    
+				lf.player(true);
+			}
+		}
+		
+	}
+	
+	private static void Seralize(League s)/*Serialization*/
+	{
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("GameLeague.dat");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(s);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized ");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
+	}
+
+
+	private static League Deserialize(League s)/*Deserializes the file, source from internet*/
+	{
+		s = null;
+		try {
+		FileInputStream fileIn = new FileInputStream("GameLeague.dat");
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		s =  (League) in.readObject();
+		in.close();
+		fileIn.close();
+		} catch(IOException i) {
+			i.printStackTrace();
+			
+		}catch(ClassNotFoundException c) {
+			System.out.println("league not found");
+			c.printStackTrace();
+		}
+		return s;
+			
+		
+	}
+	
+	
+	
+	LeagueFrame()
+	{
+		 super("LeagueOfLegends");
+		 this.setSize(500,200);
+		this.setLayout(new BorderLayout());
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		
+		 
+		
+	     
+	     this.setVisible(true);
+	     this.setLocationRelativeTo(null);
+	     
+	     
+		JMenuBar menubar = new JMenuBar();
+		JMenu menu = new JMenu("Info");
+		JMenuItem exit = new JMenuItem("Exit");
+		JMenuItem teaminfo = new JMenuItem("Team Info");
+		JMenuItem playerinfo = new JMenuItem("Player Info");
+		menubar.add(menu);
+		menu.add(teaminfo);
+		menu.add(playerinfo);
+		menu.add(exit);
+		this.setJMenuBar(menubar);
+		ImageIcon team = new ImageIcon("team.png"); 
+		ImageIcon player = new ImageIcon("player.png"); 
+		menuteam = new JButton("Team  Info",team);
+		menuplayer = new JButton("Player Info",player);
+		
+
+		menuplayer.setMaximumSize(new Dimension(Integer.MAX_VALUE, menuplayer.getMinimumSize().height));
+		menuteam.setMaximumSize(new Dimension(Integer.MAX_VALUE,menuteam.getMinimumSize().height));
+		
+		Box iconPanel = new Box(BoxLayout.PAGE_AXIS);
+		iconPanel.add(menuplayer);
+		iconPanel.add(menuteam);
+		
+		
+		iconPanel.setBackground(Color.gray);
+		iconPanel.setVisible(true);
+	
+		
+		this.add(iconPanel, BorderLayout.WEST);
+		
+		
+
+	        this.pack();
+		
+		
+		ImageIcon logo = new ImageIcon("bg.png");
+	    JLabel label_logo = new JLabel(logo);
+	    JScrollPane jsp = new JScrollPane(label_logo);
+		
+	   this.getContentPane().add(jsp,BorderLayout.EAST);
+		
+	   this.pack();
+		
+	   this.setLocationRelativeTo(null);
+		
+		exit.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent ev) {
+		            System.exit(0);
+		    }
+		});
+		
+		ActionListener1 listener = new ActionListener1();
+		
+		menuteam.addActionListener(listener);
+		menuplayer.addActionListener(listener);
+		
+		
+		
+		playerinfo.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent ev) {
+		    		
+		    	LeagueFrame lf = new LeagueFrame();
+	       	   
+		    		lf.dispose();
+	       	    
+		    		lf.player(true);
+		    }
+		});
+		
+		teaminfo.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent ev) {
+		    		
+		    	LeagueFrame lf = new LeagueFrame();
+		    		
+		    		lf.dispose();
+	       	    
+	       	    
+		    				lf.team(true);
+		    }
+		});
+		
+				
+				this.addWindowListener(new WindowListener()
+				{
+
+					public void windowActivated(java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					public void windowClosed(java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					public void windowClosing(java.awt.event.WindowEvent arg0) {
+						
+						 int response = JOptionPane.showConfirmDialog(null, "Do you want exit?", "Confirm",
+							        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+							    if (response == JOptionPane.YES_OPTION) {
+							      System.exit(0);
+							    } 
+						
+						
+					}
+					public void windowDeactivated(
+							java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					public void windowDeiconified(
+							java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					public void windowIconified(java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub	
+					}
+					public void windowOpened(java.awt.event.WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}				
+				});
+		
+		
+		
+		
+	}
+	
+
+	
+	
+	private void team(boolean visible)
+	{
+		final JFrame frame = new JFrame("Team Info");
+		League l=null;
+		l=Deserialize(l);
+		
+		String[] attribute1 = {"Team Name","Year Found","Head Coach"};
+		Object[][] teamData= 
+			{
+				{l.teams.get(0).getTeamName(),l.teams.get(0).getTeamYears(),l.teams.get(0).getTeamCoach()},
+				{l.teams.get(1).getTeamName(),l.teams.get(1).getTeamYears(),l.teams.get(1).getTeamCoach()},
+				{l.teams.get(2).getTeamName(),l.teams.get(2).getTeamYears(),l.teams.get(2).getTeamCoach()},
+			};
+		
+		frame.setLayout(new BorderLayout());
+		 table1=new JTable(teamData,attribute1);
+		JPanel south1=new JPanel();
+		south1.setLayout(new FlowLayout());
+		 show = new JButton("Show Logo");
+		 show.setToolTipText("Enter team name and press it");
+		teamname= new JTextField(30);
+		JLabel label = new JLabel("Enter Team:");
+	
+		
+		south1.add(label);
+		south1.add(teamname);
+		south1.add(show);
+		
+		
+		
+		
+		scrollpane1 = new JScrollPane(table1);
+		 table1.setFillsViewportHeight(true);
+		 JLabel Header1 = new JLabel("Team List: Season 7 Record");
+		 
+ Header1.setFont(new Font("Bell MT",Font.TRUETYPE_FONT,28));
+		 
+ 
+ ImageIcon logo = new ImageIcon("bg1.png");
+ JLabel label_logo = new JLabel(logo);
+ JScrollPane jsp = new JScrollPane(label_logo);
+ 
+ 			
+
+ 		
+
+ 			frame.getContentPane().setLayout(new BorderLayout());
+	
+		 
+ 			 frame.getContentPane().add(jsp,BorderLayout.WEST);
+		 frame.getContentPane().add(Header1,BorderLayout.PAGE_START);
+	    
+		 frame.getContentPane().add(south1,BorderLayout.SOUTH);
+		 
+		 frame.getContentPane().add(scrollpane1,BorderLayout.CENTER);
+	    
+		
+		 
+	    
+		 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	      
+		 frame.setSize(550, 200);
+	      
+		 frame.isResizable();
+	     
+		 
+		
+		 
+		
+	       
+			
+			teamname.setToolTipText("Enter teamname, Press 'Enter' or click 'Show logo' after finishing input");
+	       	
+			teamname.addKeyListener(new KeyAdapter() {
+		        @Override
+		        public void keyPressed(KeyEvent e) {
+		            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+		                
+		            	show.doClick();
+		            	
+		            }
+		        }
+
+		    });
+			
+			
+			    frame.pack();
+			    frame.setLocationRelativeTo(null);
+			 
+			    
+			
+			    
+			    
+			 show.addActionListener( new ActionListener()
+		       	{
+		       	    public void actionPerformed(ActionEvent e)
+		       	    {
+		       	    	
+		       	    	
+		       	    	ImageIcon logo = new ImageIcon(teamname.getText()+".png");
+					    JLabel label_logo = new JLabel(logo);
+					    JScrollPane jsp = new JScrollPane(label_logo);
+					    frame.getContentPane().add(jsp,BorderLayout.EAST);
+					    frame.setVisible(true);
+					    frame.pack();
+					    teamname.setText("");
+		       	    }
+		       	});
+			 
+			 SwingUtilities.invokeLater(new Runnable() {
+			      public void run() {
+			        teamname.requestFocus();
+			      }
+			    });
+			
+			 
+				/*OkButtonActionListener listener = new OkButtonActionListener(teamname);
+				show.addActionListener(listener);*/
+			 frame.setVisible(visible);
+	}
+	
+	private void player(boolean visible)
+
+	
+	{
+		League l=null;
+		l=Deserialize(l);
+		
+	    
+		
+		
+		String[] attribute = {"Name","Team","Position","#MvP","Age","#Games"};
+		
+		Object[][] playerData=
+			 {
+				 {l.teams.get(0).players.get(0).getPlayerName(),l.teams.get(0).players.get(0).getPlayerTeam(),l.teams.get(0).players.get(0).getPlayerPosition(),l.teams.get(0).players.get(0).getPlayerMVP(),l.teams.get(0).players.get(0).getPlayerAge(),l.teams.get(0).players.get(0).getPlayerGamePlayed()},
+				 {l.teams.get(0).players.get(1).getPlayerName(),l.teams.get(0).players.get(1).getPlayerTeam(),l.teams.get(0).players.get(1).getPlayerPosition(),l.teams.get(0).players.get(1).getPlayerMVP(),l.teams.get(0).players.get(1).getPlayerAge(),l.teams.get(0).players.get(1).getPlayerGamePlayed()},
+				 {l.teams.get(0).players.get(2).getPlayerName(),l.teams.get(0).players.get(2).getPlayerTeam(),l.teams.get(0).players.get(2).getPlayerPosition(),l.teams.get(0).players.get(2).getPlayerMVP(),l.teams.get(0).players.get(2).getPlayerAge(),l.teams.get(0).players.get(2).getPlayerGamePlayed()},
+				 {l.teams.get(0).players.get(3).getPlayerName(),l.teams.get(0).players.get(3).getPlayerTeam(),l.teams.get(0).players.get(3).getPlayerPosition(),l.teams.get(0).players.get(3).getPlayerMVP(),l.teams.get(0).players.get(3).getPlayerAge(),l.teams.get(0).players.get(3).getPlayerGamePlayed()},
+				 {l.teams.get(0).players.get(4).getPlayerName(),l.teams.get(0).players.get(4).getPlayerTeam(),l.teams.get(0).players.get(4).getPlayerPosition(),l.teams.get(0).players.get(4).getPlayerMVP(),l.teams.get(0).players.get(4).getPlayerAge(),l.teams.get(0).players.get(4).getPlayerGamePlayed()},
+				
+				 {l.teams.get(1).players.get(0).getPlayerName(),l.teams.get(1).players.get(0).getPlayerTeam(),l.teams.get(1).players.get(0).getPlayerPosition(),l.teams.get(1).players.get(0).getPlayerMVP(),l.teams.get(1).players.get(0).getPlayerAge(),l.teams.get(1).players.get(0).getPlayerGamePlayed()},
+				 {l.teams.get(1).players.get(1).getPlayerName(),l.teams.get(1).players.get(1).getPlayerTeam(),l.teams.get(1).players.get(1).getPlayerPosition(),l.teams.get(1).players.get(1).getPlayerMVP(),l.teams.get(1).players.get(1).getPlayerAge(),l.teams.get(1).players.get(1).getPlayerGamePlayed()},
+				 {l.teams.get(1).players.get(2).getPlayerName(),l.teams.get(1).players.get(2).getPlayerTeam(),l.teams.get(1).players.get(2).getPlayerPosition(),l.teams.get(1).players.get(2).getPlayerMVP(),l.teams.get(1).players.get(2).getPlayerAge(),l.teams.get(1).players.get(2).getPlayerGamePlayed()},
+				 {l.teams.get(1).players.get(3).getPlayerName(),l.teams.get(1).players.get(3).getPlayerTeam(),l.teams.get(1).players.get(3).getPlayerPosition(),l.teams.get(1).players.get(3).getPlayerMVP(),l.teams.get(1).players.get(3).getPlayerAge(),l.teams.get(1).players.get(3).getPlayerGamePlayed()},
+				 {l.teams.get(1).players.get(4).getPlayerName(),l.teams.get(1).players.get(4).getPlayerTeam(),l.teams.get(1).players.get(4).getPlayerPosition(),l.teams.get(1).players.get(4).getPlayerMVP(),l.teams.get(1).players.get(4).getPlayerAge(),l.teams.get(1).players.get(4).getPlayerGamePlayed()},
+				 
+				 {l.teams.get(2).players.get(0).getPlayerName(),l.teams.get(2).players.get(0).getPlayerTeam(),l.teams.get(2).players.get(0).getPlayerPosition(),l.teams.get(2).players.get(0).getPlayerMVP(),l.teams.get(2).players.get(0).getPlayerAge(),l.teams.get(2).players.get(0).getPlayerGamePlayed()},
+				 {l.teams.get(2).players.get(1).getPlayerName(),l.teams.get(2).players.get(1).getPlayerTeam(),l.teams.get(2).players.get(1).getPlayerPosition(),l.teams.get(2).players.get(1).getPlayerMVP(),l.teams.get(2).players.get(1).getPlayerAge(),l.teams.get(2).players.get(1).getPlayerGamePlayed()},
+				 {l.teams.get(2).players.get(2).getPlayerName(),l.teams.get(2).players.get(2).getPlayerTeam(),l.teams.get(2).players.get(2).getPlayerPosition(),l.teams.get(2).players.get(2).getPlayerMVP(),l.teams.get(2).players.get(2).getPlayerAge(),l.teams.get(2).players.get(2).getPlayerGamePlayed()},
+				 {l.teams.get(2).players.get(3).getPlayerName(),l.teams.get(2).players.get(3).getPlayerTeam(),l.teams.get(2).players.get(3).getPlayerPosition(),l.teams.get(2).players.get(3).getPlayerMVP(),l.teams.get(2).players.get(3).getPlayerAge(),l.teams.get(2).players.get(3).getPlayerGamePlayed()},
+				 {l.teams.get(2).players.get(4).getPlayerName(),l.teams.get(2).players.get(4).getPlayerTeam(),l.teams.get(2).players.get(4).getPlayerPosition(),l.teams.get(2).players.get(4).getPlayerMVP(),l.teams.get(2).players.get(4).getPlayerAge(),l.teams.get(2).players.get(4).getPlayerGamePlayed()},
+			 };
+	
+	    final JFrame frame = new JFrame("Player Info");
+	    
+	   frame.setAutoRequestFocus(false);
+	    ImageIcon logo = new ImageIcon("sktbg.png");
+	    JLabel label_logo = new JLabel(logo);
+	    JScrollPane jsp = new JScrollPane(label_logo);
+	    
+	  
+	    
+		frame.setLayout(new BorderLayout());
+		
+		
+		
+		JPanel south=new JPanel();
+		String[] PName= 
+			{
+				"Faker","Bang","Peanut","Huni","Wolf","CaoMei","WeiXiao","ClearLove","Fzzf","Misaya","Uzi",
+				"LetMe","Ming","Mlxg","XiaoHu",
+			};
+		box = new JComboBox<String>(PName);
+		
+		ImageIcon player_picture = new ImageIcon("picture.png"); 
+		showP = new JButton("Show Player Picture",player_picture);
+		showP.setToolTipText("Click to display picture of selected player");
+	    
+		
+		south.setLayout(new FlowLayout());
+		south.add(Box.createHorizontalStrut(550));
+		south.add(box);
+		south.add(showP);
+		
+		
+		
+		
+	 
+	     table = new JTable(playerData, attribute);
+		 
+	   
+		 scrollPane = new JScrollPane(table);
+		
+		 table.setFillsViewportHeight(true);
+		
+		 
+		 JLabel Header = new JLabel("Player List: Season 7 Record");
+		
+		 
+		
+		 Header.setFont(new Font("Bell MT",Font.TRUETYPE_FONT,28));
+		 
+		 frame.getContentPane().setLayout(new BorderLayout());
+	
+		 frame.getContentPane().add(jsp,BorderLayout.WEST);
+		 
+		 frame.getContentPane().add(Header,BorderLayout.NORTH);
+	    
+		 
+		 frame.getContentPane().add(scrollPane,BorderLayout.CENTER);
+	    
+		 
+		 frame.add(south,BorderLayout.SOUTH);
+		
+	    
+	        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	      
+	        frame.setSize(550, 300);
+	      
+	        frame.isResizable();
+	     
+	       	frame.pack();
+	       
+	       	
+	       	
+	       	frame.setVisible(visible);
+	       	
+	     
+	       
+	       			
+	       			
+	   	
+	       			
+		
+	    	
+		showP.addActionListener( new ActionListener()
+	       	{
+	       	    
+				public void actionPerformed(ActionEvent e)
+	       	    {
+	       	    	JPanel panel = new JPanel();
+	       	    	panel.setVisible(true);
+	       	    	ImageIcon logo = new ImageIcon((box.getSelectedItem().toString())+".png");
+				    JLabel label_logo = new JLabel(logo);
+				    JScrollPane jsp = new JScrollPane(label_logo);
+				    
+				    
+				    JTextArea textArea = new JTextArea(box.getSelectedItem().toString());
+				   textArea.setFont(getFont());
+				   textArea.setFont(textArea.getFont().deriveFont(60f));
+				   textArea.setForeground(Color.BLUE);
+				    
+				    panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+				    panel.add(textArea);
+				    panel.add(jsp);
+				    frame.add(panel,BorderLayout.EAST);
+				    
+				   /* frame.getContentPane().add(jsp,BorderLayout.EAST);
+				    frame.getContentPane().add(TextArea,BorderLayout.NORTH);*/
+				    
+				    frame.pack();
+				    
+	       	    }
+	       	});
+	       			
+		
+	       			
+	       	
+	       
+		
+	}
+	
+	
+	
+
+
+	
+
+	public static void main(String[] args) {
+		 
+		LeagueFrame lf = new LeagueFrame();
+	    lf.setVisible(true);
+	      
+    	/*Serialization*/
+		/*Team team= new Team("SKT",2013,"kOMma");
+		team.addPlayer(new Player("Huni","SKT","Top",14,23,656));
+		team.addPlayer(new Player("Peanut","SKT","Jungle",5,18,646));
+		team.addPlayer(new Player("Faker","SKT","Mid",31,22,656));
+		team.addPlayer(new Player("Wolf","SKT","Support",15,24,462));
+		team.addPlayer(new Player("Bang","SKT","Adc",1,22,555));
+		
+		
+		Team team1= new Team("WE",2010,"Doron");
+		team.addPlayer(new Player("CaoMei","WE","Top",56,27,799));
+		team.addPlayer(new Player("ClearLove","WE","Jungle",31,23,561));
+		team.addPlayer(new Player("Misaya","WE","Mid",62,28,452));
+		team.addPlayer(new Player("Fzzf","WE","Support",21,26,165));
+		team.addPlayer(new Player("WeiXiao","WE","Adc",31,24,451));
+		
+
+		Team team2= new Team("RNG",2015,"Standion");
+		team.addPlayer(new Player("LetMe","RNG","Top",39,22,656));
+		team.addPlayer(new Player("Mlxg","RNG","Jungle",62,23,232));
+		team.addPlayer(new Player("XiaoHu","RNG","Mid",7,20,23));
+		team.addPlayer(new Player("Ming","RNG","Support",7,18,651));
+		team.addPlayer(new Player("Uzi","RNG","Adc",14,23,1025));
+		
+		
+		League league = new League();
+		league.addTeam(team);
+		league.addTeam(team1);
+		league.addTeam(team2);
+		
+		
+		Seralize(league);*/
+	  
+	      
+		
+		
+
+	}
+
+
+
+	public void windowActivated(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowClosed(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowClosing(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("h");
+	}
+	public void windowDeactivated(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowDeiconified(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowIconified(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowOpened(java.awt.event.WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

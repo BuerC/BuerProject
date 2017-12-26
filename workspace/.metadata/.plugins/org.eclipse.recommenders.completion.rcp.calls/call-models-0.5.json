@@ -1,0 +1,32 @@
+{
+  "C:\\Users\\Buertc\\workspace\\LabJava\\src": {
+    "location": "C:\\Users\\Buertc\\workspace\\LabJava\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\Buertc\\workspace\\LabJava\\src\u0027. Skipped."
+  },
+  "C:\\Users\\Buertc\\workspace\\Lab_stackk\\src": {
+    "location": "C:\\Users\\Buertc\\workspace\\Lab_stackk\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\Buertc\\workspace\\Lab_stackk\\src\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_92\\lib\\rt.jar": {
+    "location": "C:\\Program Files\\Java\\jre1.8.0_92\\lib\\rt.jar",
+    "status": "UNRESOLVED",
+    "error": "Could not transfer artifact jre:jre:zip:call:1.0.0 from/to remote-models (http://download.eclipse.org/recommenders/models/kepler/): Error transferring file, server returned status code 307"
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_151\\lib\\rt.jar": {
+    "location": "C:\\Program Files\\Java\\jre1.8.0_151\\lib\\rt.jar",
+    "status": "UNRESOLVED",
+    "error": "Could not transfer artifact jre:jre:zip:call:1.0.0 from/to remote-models (http://download.eclipse.org/recommenders/models/kepler/): Error transferring file, server returned status code 307"
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_151\\lib\\ext\\jfxrt.jar": {
+    "location": "C:\\Program Files\\Java\\jre1.8.0_151\\lib\\ext\\jfxrt.jar",
+    "status": "UNRESOLVED",
+    "error": "Could not transfer artifact jre:jre:zip:call:1.0.0 from/to remote-models (http://download.eclipse.org/recommenders/models/kepler/): Error transferring file, server returned status code 307"
+  },
+  "C:\\Users\\Buertc\\workspace\\JavaHW\\src": {
+    "location": "C:\\Users\\Buertc\\workspace\\JavaHW\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\Buertc\\workspace\\JavaHW\\src\u0027. Skipped."
+  }
+}

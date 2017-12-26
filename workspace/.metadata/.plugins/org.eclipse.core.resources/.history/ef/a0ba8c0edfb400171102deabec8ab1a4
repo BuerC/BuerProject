@@ -1,0 +1,195 @@
+/***************************************************
+ * Observable.java
+ * ---------------
+ *
+ * Author:  YOUR_NAME
+ * Company: YOUR_COMPANY
+ * Date:    2017/10/19
+ *
+ * Copyright (c), 2017, YOUR_COMPANY
+ **************************************************/    
+
+import java.util.*;
+//#ACD# M(UDIS::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE) ---- additional import statements
+//user defined code to be added here ...
+
+//#end ACD#
+
+public class Observable {
+
+  // ------------------------------------------------------------
+  // instance attributes
+  // ------------------------------------------------------------
+  protected Vector Observes;
+
+  //#ACD# M(UDAT::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE) ---- additional attributes
+  //user defined code to be added here ...
+
+  //#end ACD#
+
+  // ------------------------------------------------------------
+  // constructors
+  // ------------------------------------------------------------
+  /**
+   * Default constructor
+   */
+  public Observable() {
+    //#ACD# M(UDCC::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE-def-ctor) ---- constructor body
+    //user defined code to be added here ...
+
+    //#end ACD#
+  }
+
+  /**
+   * This constructor initializes all instance attributes,
+   * which are not derived. Furthermore <code>final</code>
+   * attributes with a default value aren't initialized either.
+   */
+  public Observable(Vector Observes) {
+    //#ACD# M(UDCC::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE-full-ctor) ---- constructor body
+    //user defined code to be added here ...
+
+    //#end ACD#
+    this.Observes = Observes;
+  }
+
+  //#ACD# M(UDCO::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE) ---- additional constructors
+  //user defined code to be added here ...
+
+  //#end ACD#
+
+  // ------------------------------------------------------------
+  // methods
+  // ------------------------------------------------------------
+  public void register(Observer Observer) {
+    //#ACD# M(UDOP::UID_B93DA9B8-9B58-4f38-AD12-0C019EA1F594) ---- method body
+    //user defined code to be added here ...
+      
+    //#end ACD#
+  }
+
+  public void unregister(Observer observer) {
+    //#ACD# M(UDOP::UID_66DAFA98-646F-4ad9-B6CA-AD2A51AE7352) ---- method body
+    //user defined code to be added here ...
+      
+    //#end ACD#
+  }
+
+  public void reportToObserver() {
+    //#ACD# M(UDOP::UID_8BB8DA6E-C07B-422c-BA00-01EF1083DFA1) ---- method body
+    //user defined code to be added here ...
+      
+    //#end ACD#
+  }
+
+  /**
+   * Automatically generated <code>set</code>-method 
+   * from attribute <code>Observes</code>.
+   * 
+   * @param Observes Sets this instance's 
+   *    <code>Observes</code> to a new value.
+   * @see #getObserves()
+   */
+  protected void setObserves(Vector Observes) {
+    //#ACD# M(UDOP::UID_D9EFF1B3-E610-4da1-A1C9-DEF4065F716E-assoc-setter) ---- method body
+    //user defined code to be added here ...
+      
+    //#end ACD#
+    this.Observes = Observes;
+  }
+
+  /**
+   * Automatically generated <code>get()</code>-method 
+   * from attribute <code>Observes</code>.
+   * 
+   * @return This instance's <code>Observes</code>.
+   * @see #setObserves(Vector)
+   */
+  protected Vector getObserves() {
+    //#ACD# M(UDOP::UID_D9EFF1B3-E610-4da1-A1C9-DEF4065F716E-assoc-getter) ---- method body
+    //user defined code to be added here ...
+      
+    //#end ACD#
+    return Observes;
+  }
+
+  //#ACD# M(UDOP::UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE) ---- additional operations
+  //user defined code to be added here ...
+
+  //#end ACD#
+  // ------------------------------------------------------------
+  // standard methods
+  // ------------------------------------------------------------
+
+  /**
+   * Generates a String representation of this object.
+   * Loops over all non-static fields of this object.
+   *
+   * Users are encouraged to accustom this function to
+   * their specific needs!
+   *
+   * @return The content (state) of this object as string.
+   */
+  public String toString() {
+    StringBuffer strbuf = new StringBuffer();
+    strbuf.append("Observable:\n");
+    if (Observes != null)
+      strbuf.append("Observes: " + Observes.toString()).append("\n");
+    else
+      strbuf.append("Observes: null").append("\n"); 
+    //#ACD# M(UID_A3E2ED85-65B1-47c1-B71A-DAA41337A2AE-toString) ---- method body
+    //user defined code to be added here ...
+    
+    //#end ACD#
+    return strbuf.toString();
+  }
+
+  /**
+   * Tests this instance against another object for equality.
+   * Rather to test for simple object reference equality as in
+   * {@link java.lang.Object#equals(Object) Object.equals(Object o)} 
+   * this function tests against <i>semantic</i> equivalence of the 
+   * content of the two objects.<br><br>
+   *
+   * Note that instances of classes without instance attributes return
+   * always <code>true</code>, since they <b>must</b> have the same
+   * state.<br><br>
+   *
+   * Users are encouraged to customize this function to
+   * their specific needs!
+   *
+   * @param o The object this instance is compared to.
+   * @return <code>true</code>, if the two objects are equivalent semantically.
+   */
+  public boolean equals(Object o) {
+    if (! (o instanceof Observable))
+      return false;
+    else {
+      Observable c = (Observable) o;
+      if (
+          ((Observes == null && c.Observes == null) || (Observes != null && c.Observes != null && Observes.equals(c.Observes)))
+         )
+        return true;
+      else
+        return false;
+    }
+  }
+
+  /**
+   * Provides a (shallow) copy of this instance and returns it. 
+   * It achieves that by looping over all non-static fields of 
+   * this instance and assigning their values to the corresponding 
+   * fields of the new object. <br><br>
+   * Note, that there <b>must</b> be an accessible no-arg default 
+   * constructor for this function to work, either explicitly in 
+   * the class or by <b>not</b> defining any other constructors!
+   *
+   * @return The newly created object.
+   */
+  public Object clone() {
+    Observable obj = new Observable();
+    obj.Observes = Observes;
+    return obj;
+  }
+
+}

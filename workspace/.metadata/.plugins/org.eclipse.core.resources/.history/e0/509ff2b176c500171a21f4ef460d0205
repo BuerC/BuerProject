@@ -1,0 +1,31 @@
+package ProLeague;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class League implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -649690985132703967L;
+	ArrayList<Team> teams;
+	
+	League()
+	{
+		teams = new ArrayList<Team>();
+		
+	}
+	public void addTeam(Team t)
+	{
+		teams.add(t);
+	}
+	
+
+
+	 public void getTeam()
+	 {
+		 for(int i=0;i<teams.size();i++)
+		 System.out.println(teams.get(i).getTeamName());
+	 }
+}

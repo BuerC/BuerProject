@@ -1,0 +1,31 @@
+/***************************************************
+ * Observer.java
+ * -------------
+ *
+ * Author:  YOUR_NAME
+ * Company: YOUR_COMPANY
+ * Date:    2017/10/19
+ *
+ * Copyright (c), 2017, YOUR_COMPANY
+ **************************************************/    
+
+//#ACD# M(UDIS::UID_EDF2E570-4A85-413d-8382-E92D06614C2F) ---- additional import statements
+//user defined code to be added here ...
+
+//#end ACD#
+
+public interface Observer {
+  //#ACD# M(UDAT::UID_EDF2E570-4A85-413d-8382-E92D06614C2F) ---- additional static attributes
+  //user defined code to be added here ...
+
+  //#end ACD#
+
+  // ------------------------------------------------------------
+  // methods
+  // ------------------------------------------------------------
+  public void report(Observable observable);
+  //#ACD# M(UDOP::UID_EDF2E570-4A85-413d-8382-E92D06614C2F) ---- additional operations
+  //user defined code to be added here ...
+
+  //#end ACD#
+}

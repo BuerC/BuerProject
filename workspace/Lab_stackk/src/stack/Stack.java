@@ -1,0 +1,62 @@
+package stack;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.io.*;
+ @SuppressWarnings("serial")
+
+ public class Stack<T>  implements Iterable<T>, Serializable{
+	ArrayList<T> array;
+	 @SuppressWarnings({ "unchecked", "rawtypes" })
+	public  Stack()
+	 	{
+		 array = new ArrayList();
+	 	}
+	 void push(T t)//puts  the element t on top of the stack
+	 	{
+		 	array.add(0,t);
+		 	
+	 	} 
+	 T pop() throws EmptyStackException//returns and remove the first element of the stack
+	 	{
+		 
+		 if(array.size()==0)
+		 {
+			 throw new EmptyStackException();
+		 }
+		 else 
+		 {
+			  T top_of_array = array.get(0);
+			  array.remove(0);
+			  return top_of_array;
+		 }
+		
+		}
+	 T top() throws EmptyStackException//returns but does not remove the first elements on top of the stack
+	 	{
+		 if(array.size()==0)
+		 {
+			 throw new EmptyStackException();
+		 }
+		 else
+		 {
+			 T top_of_array = array.get(0);
+			 return top_of_array;
+		 }
+		
+		}
+	 public Iterator<T> iterator()
+	 {
+	
+		return array.iterator();
+	 }
+	 int size()
+	 	{
+		 	return array.size();
+	 	}
+	 void clear()
+	 	{
+		 	array.clear();
+		 }
+	
+}

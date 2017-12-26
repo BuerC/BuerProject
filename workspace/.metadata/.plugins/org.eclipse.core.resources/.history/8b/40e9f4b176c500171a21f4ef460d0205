@@ -1,0 +1,42 @@
+package ProLeague;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class JUnit2 {
+	
+	Team team;
+	League league;
+	@Before
+	public void setup()
+	{
+		team= new Team("SKT",2013,"kOMma");
+		league = new League();
+	}
+	@Test
+	public void testName() {
+		
+		String TName = team.getTeamName();
+		assertEquals("SKT",TName);
+	}
+	@Test
+	public void testYear() {
+		int TYear = team.getTeamYears();
+		assertEquals(2013,TYear);
+		
+	}
+	@Test
+	public void testCoach() {
+		String TCoach = team.getTeamCoach();
+		assertEquals("kOMma",TCoach);
+		
+	}
+	@Test
+	public void testAdd() {
+		league.addTeam(team);
+		String TName = league.teams.get(0).getTeamName();
+		assertEquals("SKT",TName);
+	}
+}

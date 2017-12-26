@@ -1,0 +1,54 @@
+package ProLeague;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class JUnit {
+	Player player;
+	@Before
+	public void setup(){
+		player = new Player("SKT","Faker","Mid",15,23,150);
+	}
+	@Test
+	public void Nametest() {
+		
+		String pName = player.getPlayerName();
+		assertEquals("Faker",pName);	
+	}
+	
+	
+	@Test
+	public void Teamtest() {
+		
+		String pTeam = player.getPlayerTeam();
+		assertEquals("SKT",pTeam);	
+	}
+	@Test
+	public void Positiontest()
+	{
+		String PPosition = player.getPlayerPosition();
+		assertEquals("Mid",PPosition);
+	}
+	@Test
+	public void Mvptest()
+	{
+		int PMvp = player.getPlayerMVP();
+		assertEquals(15,PMvp);
+	}
+	@Test
+	public void Agetest()
+	{
+		int PAge = player.getPlayerAge();
+		assertEquals(23,PAge);
+	}
+	@Test
+	public void Gametest()
+	{
+		int PGame = player.getPlayerGamePlayed();
+		assertEquals(150,PGame);
+	}
+	
+}
