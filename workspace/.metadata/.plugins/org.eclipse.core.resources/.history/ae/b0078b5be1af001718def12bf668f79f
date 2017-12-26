@@ -1,8 +1,0 @@
-package lab5;
-
-public class HasRoom extends Exception {
-	public HasRoom()
-	{
-		
-	}
-}

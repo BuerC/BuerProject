@@ -1,8 +1,0 @@
-package lab5;
-
-public class IsEmpty extends Exception{
-	public IsEmpty()
-	{
-		
-	}
-}
